@@ -1,0 +1,29 @@
+header {
+    background: rgb(187, 168, 63);
+    padding: 10px;
+}
+
+.header__wrapper {
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+    width: 70%;
+}
+
+.header__wrapper h1 {
+    margin-left: 50%;
+}
+
+.logo__wrapper {
+    max-width: 80px;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.login__block h4{
+    font-weight: 700;
+    color: black;
+    font-size: 20px;
+}

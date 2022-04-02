@@ -1,0 +1,10 @@
+.content__wrapper{
+    padding: 10px;
+}
+.content__item{
+    background: rgb(141, 216, 210);
+    padding: 10px;
+}
+.content__item h2{
+    margin: 0;
+}

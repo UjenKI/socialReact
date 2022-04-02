@@ -1,0 +1,27 @@
+.sidebar {
+    background: rgb(46, 126, 22);
+    max-width: 20%;
+    width: 20%;
+    margin-top: 10px;
+    padding: 0 10px;
+    min-height: 800px;
+}
+
+.sidebar h2 {
+    padding: 10px 0;
+    border-bottom: 2px solid #fff;
+}
+
+.menu {
+    padding: 0;
+}
+
+.menu__item {
+    margin: 15px 0;
+}
+
+.menu__item a {
+    color: #fff;
+    text-decoration: none;
+    outline: none;
+}

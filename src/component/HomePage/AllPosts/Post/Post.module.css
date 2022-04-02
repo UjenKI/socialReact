@@ -1,0 +1,8 @@
+.post__item{
+    min-width: 900px;
+    border-radius: 10px;
+    background: rgb(123, 172, 161);
+    margin: 10px;
+    padding: 30px;
+    text-align: start;
+}

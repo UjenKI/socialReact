@@ -1,0 +1,12 @@
+.chat__name{
+    display: block;
+    padding: 15px;
+    background: lightblue;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    color: rgb(70, 68, 68);
+    text-decoration: none;
+}

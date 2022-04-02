@@ -1,0 +1,11 @@
+.messages{
+    padding: 15px;
+    background: rgb(109, 146, 148);
+    margin-bottom: 15px;
+    border-radius: 10px;
+    color: #fff;
+    max-width: 250px;
+}
+.messages p{
+    font-size: 16px;
+}
