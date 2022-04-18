@@ -33,10 +33,6 @@ const HomePageContainer = (props) => {
     }
     
     useEffect(() => {
-        // profileAPI.getProfile(userId)
-        //     .then(res => {
-        //       props.setProfilePage(res.data);
-        //     })
         props.getProfile(userId)
     }, [userId])
 
