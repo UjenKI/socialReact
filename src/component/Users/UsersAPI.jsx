@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import * as axios from 'axios'
+// import * as axios from 'axios'
 import User from './User';
 import { getUsers } from '../../redux/usersReducer';
 // import { usersAPI } from '../../api/api';

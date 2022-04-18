@@ -1,11 +1,17 @@
 import React, { createRef } from 'react';
 
+// import { Navigate } from 'react-router-dom';
+
 import style from './ChatPage.module.css';
 import ChatItem from './ChatItem/ChatItem';
 import Messages from './Messages/Messages';
 
 const ChatPage = (props) => {
-console.log(props)
+
+console.log(props.auth.isAuth)
+
+// if(!props.auth.isAuth) return <Navigate to={'/login'} />
+
     let textAreaValue = React.createRef();
 
     let messageAdd = () => {

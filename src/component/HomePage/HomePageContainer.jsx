@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 // import { profileAPI } from '../../api/api';
 import HomePage from './HomePage';
-import { setProfilePage, getProfile } from '../../redux/profileReducer';
+import { getProfile } from '../../redux/profileReducer';
 
 
 // class HomePageContainer extends Component {
@@ -26,8 +26,6 @@ import { setProfilePage, getProfile } from '../../redux/profileReducer';
 
 const HomePageContainer = (props) => {
     let {userId} = useParams();
-
-    console.log(props.auth.id)
 
     if(!userId){
         userId = props.auth.id
@@ -53,4 +51,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setProfilePage, getProfile})(HomePageContainer);
+export default connect(mapStateToProps, { getProfile })(HomePageContainer);

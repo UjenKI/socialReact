@@ -1,26 +1,19 @@
 import React from 'react';
 
 import { connect } from 'react-redux';
-import { addNewMessageAC, updateMessageTextAC } from '../../redux/chatReducer';
+import { AuthRedirectComponent } from '../../hoc/withAuthRedirect';
+import { addNewMessage, updateMessageText } from '../../redux/chatReducer';
 
 import ChatPage from './ChatPage';
 
 let mapStateToProps = (state) => {
     return {
-        chatPage: state.chatPage
+        chatPage: state.chatPage,
+        auth: state.auth
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        addMessage: () => {
-            dispatch(addNewMessageAC())
-        },
-        updateTextMessage: (newMessage) => {
-            dispatch(updateMessageTextAC(newMessage))
-        }
-    }
-}
+let withAuthRedirectComponent = AuthRedirectComponent(ChatPage)
 
-const ChatPageContainer = connect(mapStateToProps, mapDispatchToProps)(ChatPage);
+const ChatPageContainer = connect(mapStateToProps, { addNewMessage, updateMessageText })(withAuthRedirectComponent);
 export default ChatPageContainer;

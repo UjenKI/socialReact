@@ -5,6 +5,7 @@ import HomePageContainer from './component/HomePage/HomePageContainer';
 import ChatPageContainer from './component/Chat/ChatPageContainer';
 import SideBar from './component/SideBar';
 import UsersContainer from './component/Users/UsersContainer';
+import Login from './component/Login/Login';
 
 import './App.css';
 
@@ -22,6 +23,7 @@ const App = (props) => {
               <Route exact path='/profile/:userId' element={<HomePageContainer /> }/>
               <Route exact path='/chat' element={<ChatPageContainer />} />
               <Route exact path='/users' element={<UsersContainer />} />
+              <Route exact path='/login' element={<Login />} />
             </Routes>
           </div>
         </div>

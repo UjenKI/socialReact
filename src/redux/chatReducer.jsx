@@ -44,7 +44,7 @@ let chatReducer = (state = initialState, action) => {
     }
 }
 
-export const addNewMessageAC = () => ({type: NEW_MESSAGE});
-export const updateMessageTextAC = (newMessage) => ({type: UPDATE_MESSAGE_TEXT, newMessage});
+export const addNewMessage = () => ({type: NEW_MESSAGE});
+export const updateMessageText = (newMessage) => ({type: UPDATE_MESSAGE_TEXT, newMessage});
 
 export default chatReducer;
