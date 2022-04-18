@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import HeaderContainer from './component/Header/HeaderContainer';
 import HomePageContainer from './component/HomePage/HomePageContainer';
 import ChatPageContainer from './component/Chat/ChatPageContainer';
@@ -10,7 +10,7 @@ import './App.css';
 
 const App = (props) => {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="App">
       <HeaderContainer />
         <div className="wrap__container">
@@ -18,6 +18,7 @@ const App = (props) => {
           <div className="wrapper__container">
             <Routes>
               <Route exact path='/' element={<HomePageContainer />}/>
+              <Route exact path='/profile' element={<HomePageContainer />}/>
               <Route exact path='/profile/:userId' element={<HomePageContainer /> }/>
               <Route exact path='/chat' element={<ChatPageContainer />} />
               <Route exact path='/users' element={<UsersContainer />} />
@@ -25,7 +26,7 @@ const App = (props) => {
           </div>
         </div>
       </div>
-    </BrowserRouter>
+    </Router>
   )
 }
 

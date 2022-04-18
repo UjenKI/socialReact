@@ -1,3 +1,5 @@
+import { profileAPI } from '../api/api';
+
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
 const SET_PROFILE_PAGE = 'SET_PROFILE_PAGE';
@@ -48,5 +50,14 @@ let profilePageReducer = (state = initialState, action) => {
 export const addPostAC = () => ({type: ADD_POST});
 export const updatePostTextAC = (postText) => ({type: UPDATE_POST_TEXT, postText});
 export const setProfilePage = (profile) => ({type: SET_PROFILE_PAGE, profile })
+
+export const getProfile = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfile(userId)
+        .then(res => {
+          dispatch(setProfilePage(res.data));
+        })
+    }
+}
 
 export default profilePageReducer;

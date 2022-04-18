@@ -1,11 +1,13 @@
 import React, { Component, useEffect } from 'react';
-import * as axios from 'axios';
 
+// import * as axios from 'axios';
 import { useParams } from 'react-router-dom';
-
 import { connect } from 'react-redux';
+
+// import { profileAPI } from '../../api/api';
 import HomePage from './HomePage';
-import { setProfilePage } from '../../redux/profileReducer';
+import { setProfilePage, getProfile } from '../../redux/profileReducer';
+
 
 // class HomePageContainer extends Component {
 //     componentDidMount(){
@@ -23,15 +25,21 @@ import { setProfilePage } from '../../redux/profileReducer';
 // }
 
 const HomePageContainer = (props) => {
-    let params = useParams();
+    let {userId} = useParams();
 
+    console.log(props.auth.id)
+
+    if(!userId){
+        userId = props.auth.id
+    }
     
     useEffect(() => {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${params.userId}`)
-            .then(res => {
-              props.setProfilePage(res.data);
-            })
-    }, [params.userId])
+        // profileAPI.getProfile(userId)
+        //     .then(res => {
+        //       props.setProfilePage(res.data);
+        //     })
+        props.getProfile(userId)
+    }, [userId])
 
     return (
         <HomePage {...props} />
@@ -40,8 +48,9 @@ const HomePageContainer = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        profilePage: state.profilePage
+        profilePage: state.profilePage,
+        auth: state.auth
     }
 }
 
-export default connect(mapStateToProps, {setProfilePage})(HomePageContainer);
+export default connect(mapStateToProps, {setProfilePage, getProfile})(HomePageContainer);
