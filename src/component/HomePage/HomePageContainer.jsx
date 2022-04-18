@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 // import { profileAPI } from '../../api/api';
+import { AuthRedirectComponent } from '../../hoc/withAuthRedirect';
 import HomePage from './HomePage';
 import { getProfile } from '../../redux/profileReducer';
 
@@ -44,6 +45,8 @@ const HomePageContainer = (props) => {
     )
 }
 
+let withAuthRedirectComponent = AuthRedirectComponent(HomePageContainer)
+
 let mapStateToProps = (state) => {
     return {
         profilePage: state.profilePage,
@@ -51,4 +54,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getProfile })(HomePageContainer);
+export default connect(mapStateToProps, { getProfile })(withAuthRedirectComponent);
