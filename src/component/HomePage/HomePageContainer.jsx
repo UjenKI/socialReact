@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { AuthRedirectComponent } from '../../hoc/withAuthRedirect';
 import HomePage from './HomePage';
 import { getProfile } from '../../redux/profileReducer';
+import { compose } from 'redux';
 
 
 // class HomePageContainer extends Component {
@@ -41,7 +42,7 @@ const HomePageContainer = (props) => {
     )
 }
 
-let withAuthRedirectComponent = AuthRedirectComponent(HomePageContainer)
+// let withAuthRedirectComponent = AuthRedirectComponent(HomePageContainer)
 
 let mapStateToProps = (state) => {
     return {
@@ -50,4 +51,9 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getProfile })(withAuthRedirectComponent);
+// export default connect(mapStateToProps, { getProfile })(withAuthRedirectComponent);
+
+export default compose(
+    connect(mapStateToProps, { getProfile }),
+    AuthRedirectComponent
+)(HomePageContainer)

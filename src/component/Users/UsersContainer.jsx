@@ -6,6 +6,13 @@ import { setUsers, setToggleFetching, setTotalCount, setCurrentPage, follow, unF
 import { setProfilePage } from '../../redux/profileReducer';
 
 import UsersAPI from './UsersAPI';
+import { compose } from 'redux';
+
+const UsersContainer = (props) => {
+    return (
+        <UsersAPI {...props} />
+    )
+}
 
 let mapStateToProps = (state) => {
     return {
@@ -13,18 +20,33 @@ let mapStateToProps = (state) => {
     }
 }
 
-let withAuthRedirectComponent = AuthRedirectComponent(UsersAPI)
+// let withAuthRedirectComponent = AuthRedirectComponent(UsersContainer)
 
-const UsersContainer = connect(mapStateToProps, {
-    follow,
-    unFollow,
-    setUsers,
-    setTotalCount,
-    setCurrentPage,
-    setToggleFetching,
-    setProfilePage,
-    setFollowingProgress,
-    getUsers
-})(withAuthRedirectComponent);
+// const UsersContainer = connect(mapStateToProps, {
+//     follow,
+//     unFollow,
+//     setUsers,
+//     setTotalCount,
+//     setCurrentPage,
+//     setToggleFetching,
+//     setProfilePage,
+//     setFollowingProgress,
+//     getUsers
+// })(withAuthRedirectComponent);
+
+compose(
+    connect(mapStateToProps, {
+        follow,
+        unFollow,
+        setUsers,
+        setTotalCount,
+        setCurrentPage,
+        setToggleFetching,
+        setProfilePage,
+        setFollowingProgress,
+        getUsers
+    }),
+    AuthRedirectComponent
+)(UsersContainer)
 
 export default UsersContainer;

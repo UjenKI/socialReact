@@ -5,6 +5,13 @@ import { AuthRedirectComponent } from '../../hoc/withAuthRedirect';
 import { addNewMessage, updateMessageText } from '../../redux/chatReducer';
 
 import ChatPage from './ChatPage';
+import { compose } from 'redux';
+
+const ChatPageContainer = (props) => {
+    return (
+        <ChatPage {...props} />
+    )
+}
 
 let mapStateToProps = (state) => {
     return {
@@ -13,7 +20,12 @@ let mapStateToProps = (state) => {
     }
 }
 
-let withAuthRedirectComponent = AuthRedirectComponent(ChatPage)
+compose(
+    connect(mapStateToProps, { addNewMessage, updateMessageText }),
+    AuthRedirectComponent
+)(ChatPageContainer)
 
-const ChatPageContainer = connect(mapStateToProps, { addNewMessage, updateMessageText })(withAuthRedirectComponent);
+// let withAuthRedirectComponent = AuthRedirectComponent(ChatPage)
+
+// const ChatPageContainer = connect(mapStateToProps, { addNewMessage, updateMessageText })(withAuthRedirectComponent);
 export default ChatPageContainer;
