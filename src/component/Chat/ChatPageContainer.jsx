@@ -20,7 +20,7 @@ let mapStateToProps = (state) => {
     }
 }
 
-compose(
+export default compose(
     connect(mapStateToProps, { addNewMessage, updateMessageText }),
     AuthRedirectComponent
 )(ChatPageContainer)
@@ -28,4 +28,4 @@ compose(
 // let withAuthRedirectComponent = AuthRedirectComponent(ChatPage)
 
 // const ChatPageContainer = connect(mapStateToProps, { addNewMessage, updateMessageText })(withAuthRedirectComponent);
-export default ChatPageContainer;
+// export default ChatPageContainer;

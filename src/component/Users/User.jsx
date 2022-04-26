@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom';
 import { usersAPI } from '../../api/api';
 
 let User = (props) => {
-
     const state = props.usersPage;
 
     const list = state.users.map((user) => {

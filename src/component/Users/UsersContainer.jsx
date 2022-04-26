@@ -22,7 +22,7 @@ let mapStateToProps = (state) => {
 
 // let withAuthRedirectComponent = AuthRedirectComponent(UsersContainer)
 
-// const UsersContainer = connect(mapStateToProps, {
+// export default connect(mapStateToProps, {
 //     follow,
 //     unFollow,
 //     setUsers,
@@ -34,7 +34,7 @@ let mapStateToProps = (state) => {
 //     getUsers
 // })(withAuthRedirectComponent);
 
-compose(
+export default compose(
     connect(mapStateToProps, {
         follow,
         unFollow,
@@ -47,6 +47,4 @@ compose(
         getUsers
     }),
     AuthRedirectComponent
-)(UsersContainer)
-
-export default UsersContainer;
+)(UsersContainer);
