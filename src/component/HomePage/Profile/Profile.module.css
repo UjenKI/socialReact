@@ -22,6 +22,7 @@
     overflow: hidden;
     position: relative;
     border-radius: 50%;
+    border: 1px solid #000;
 }
 
 .img__profile img {
@@ -39,5 +40,5 @@
     line-height: 26px;
 }
 .profile__info__item {
-    
+    margin-left: 20px;
 }

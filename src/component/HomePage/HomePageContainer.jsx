@@ -1,13 +1,11 @@
-import React, { Component, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
-// import * as axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import { profileAPI } from '../../api/api';
 import { AuthRedirectComponent } from '../../hoc/withAuthRedirect';
 import HomePage from './HomePage';
-import { getProfile } from '../../redux/profileReducer';
+import { getProfile, getStatusProfile } from '../../redux/profileReducer';
 import { compose } from 'redux';
 
 
@@ -35,6 +33,7 @@ const HomePageContainer = (props) => {
     
     useEffect(() => {
         props.getProfile(userId)
+        getStatusProfile(userId)
     }, [userId])
 
     return (

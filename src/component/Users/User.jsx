@@ -22,6 +22,7 @@ let User = (props) => {
                     <div className={style.userInfo}>
                         <div className={style.userDescription}>
                             <h4>{user.name}</h4>
+                            <h3 >{user.status}</h3>
                             <p>{user.status !== null ? user.status : 'user'}</p>
                         </div>
                         { !user.followed ? <button disabled={state.inFollowingProgres.some(id => id === user.id)} onClick={() => {

@@ -60,6 +60,9 @@
 .paginationItem {
     margin: 0 5px;
 }
+.userDescription h3{
+    color: rgb(72, 128, 136);
+}
 .paginationItem span {
     display: flex;
     width: 30px;
