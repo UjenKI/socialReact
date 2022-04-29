@@ -9,16 +9,6 @@ class ProfileStatus extends React.Component {
         editMode: false
     }
 
-    // changeEditMode = () => {
-    //     if(!this.state.editMode) {
-    //         this.props.updateProfileStatus(this.state.statusText)
-    //     }
-
-    //     this.setState({
-    //         editMode: !this.state.editMode
-    //     })
-    // }
-
     activateEditMode = () => {
         this.setState({
             editMode: true
@@ -38,6 +28,14 @@ class ProfileStatus extends React.Component {
         })
     }
 
+    componentDidUpdate(prevProps, prevState){
+        console.log(prevProps, prevState)
+        if(prevProps.status !== this.props.status){
+            this.setState({
+                statusText: this.props.status
+            })
+        }
+    }
     
 
     render() {
