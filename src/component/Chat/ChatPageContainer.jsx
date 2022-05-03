@@ -2,7 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { AuthRedirectComponent } from '../../hoc/withAuthRedirect';
-import { addNewMessage, updateMessageText } from '../../redux/chatReducer';
+import { addNewMessage } from '../../redux/chatReducer';
 
 import ChatPage from './ChatPage';
 import { compose } from 'redux';
@@ -21,7 +21,7 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { addNewMessage, updateMessageText }),
+    connect(mapStateToProps, { addNewMessage }),
     AuthRedirectComponent
 )(ChatPageContainer)
 

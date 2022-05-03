@@ -1,4 +1,5 @@
 import React, { createRef } from 'react';
+import { Field, reduxForm } from 'redux-form';
 
 // import { Navigate } from 'react-router-dom';
 
@@ -12,17 +13,31 @@ console.log(props.auth.isAuth)
 
 // if(!props.auth.isAuth) return <Navigate to={'/login'} />
 
-    let textAreaValue = React.createRef();
+    // let textAreaValue = React.createRef();
 
-    let messageAdd = () => {
-        props.addMessage()
+    let messageAdd = (value) => {
+        props.addNewMessage(value.newMessage)
+        console.log(props)
     }
 
-    let updateInputText = () => {
-        let txt = textAreaValue.current.value;
-        props.updateTextMessage(txt);
-        console.log(props.chatPage);
+    // let updateInputText = () => {
+    //     let txt = textAreaValue.current.value;
+    //     props.updateTextMessage(txt);
+    //     console.log(props.chatPage);
+    // }
+
+    let addMessageForm = (props) => {
+        return (
+            <form className={style.messageHere} onSubmit={props.handleSubmit}>
+                {/* <textarea onChange={updateInputText}  ref={textAreaValue} value={ props.chatPage.newMessage }></textarea>
+                <button onClick={messageAdd} className={ style.sendMsgBtn }>Send</button> */}
+                <Field name="newMessage" placeholder="add your message..." component={"textarea"}/>
+                <button className={style.sendMsgBtn}>Send</button>
+            </form>
+        )
     }
+
+    const AddMessageReduxForm = reduxForm({form: "messageForm"})(addMessageForm);
 
     return(
         <div className={style.chat__wrapper}>
@@ -33,10 +48,7 @@ console.log(props.auth.isAuth)
                 </div>
                 <div className={style.chat__item}>
                     <Messages message={props.chatPage.messages}/>
-                   <div className={style.messageHere}>
-                        <textarea onChange={updateInputText}  ref={textAreaValue} value={ props.chatPage.newMessage }></textarea>
-                        <button onClick={messageAdd} className={ style.sendMsgBtn }>Send</button>
-                    </div>
+                    <AddMessageReduxForm onSubmit={messageAdd} />
                 </div>
             </div>
         </div>

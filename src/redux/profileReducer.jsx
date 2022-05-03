@@ -1,7 +1,7 @@
 import { profileAPI } from '../api/api';
 
 const ADD_POST = 'ADD_POST';
-const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
+// const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT';
 const SET_PROFILE_PAGE = 'SET_PROFILE_PAGE';
 const SET_STATUS = 'SET_STATUS';
 const SET_PROFILE_ID = 'SET_PROFILE_ID';
@@ -13,7 +13,6 @@ let initialState = {
         {id: 3, postText: "look at this > (.)(.) ...", likeCount: 2},
         {id: 4, postText: "hi, it's my last post)", likeCount: 5},
     ],
-    postText: '',
     profile: null,
     status: '',
     // ----------
@@ -26,21 +25,20 @@ let profilePageReducer = (state = initialState, action) => {
         case ADD_POST: {
             let newPost = {
                 id: state.posts.length + 1,
-                postText: state.postText,
+                postText: action.postText,
                 likeCount: 7
             }
             return {
                 ...state,
-                posts: [...state.posts, newPost],
-                postText: ''
+                posts: [...state.posts, newPost]
             }
         }
-        case UPDATE_POST_TEXT: {
-            return {
-                ...state,
-                postText: action.postText
-            }
-        }
+        // case UPDATE_POST_TEXT: {
+        //     return {
+        //         ...state,
+        //         postText: action.postText
+        //     }
+        // }
         case SET_STATUS: {
             return {
                 ...state,
@@ -65,8 +63,8 @@ let profilePageReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostAC = () => ({type: ADD_POST});
-export const updatePostTextAC = (postText) => ({type: UPDATE_POST_TEXT, postText});
+export const addPost = (postText) => ({type: ADD_POST, postText});
+// export const updatePostTextAC = (postText) => ({type: UPDATE_POST_TEXT, postText});
 export const setProfilePage = (profile) => ({type: SET_PROFILE_PAGE, profile });
 export const setProfileSatus = (status) => ({type: SET_STATUS, status});
 export const setProfileId = (profileId) => ({type: SET_PROFILE_ID, profileId});

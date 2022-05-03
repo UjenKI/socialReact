@@ -1,5 +1,5 @@
 const NEW_MESSAGE = 'NEW_MESSAGE';
-const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT';
+// const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT';
 
 let initialState = {
     chats: [
@@ -14,8 +14,7 @@ let initialState = {
         {id: 1, text: 'hi)'},
         {id: 2, text: 'Hello)'},
         {id: 3, text: 'How are you?)'},
-    ],
-    newMessage: ''
+    ]
 }
 
 let chatReducer = (state = initialState, action) => {
@@ -23,28 +22,27 @@ let chatReducer = (state = initialState, action) => {
         case NEW_MESSAGE: {
             let newMessage = {
                 id: state.messages.length + 1,
-                text: state.newMessage
+                text: action.newMessage
             }
 
             return {
                 ...state,
-                messages: [...state.messages, newMessage],
-                newMessage: ''
+                messages: [...state.messages, newMessage]
             }
         }
-        case UPDATE_MESSAGE_TEXT: {
-            return {
-                ...state,
-                newMessage: action.newMessage
-            }
-        }
+        // case UPDATE_MESSAGE_TEXT: {
+        //     return {
+        //         ...state,
+        //         newMessage: action.newMessage
+        //     }
+        // }
         default: {
             return state
         }
     }
 }
 
-export const addNewMessage = () => ({type: NEW_MESSAGE});
-export const updateMessageText = (newMessage) => ({type: UPDATE_MESSAGE_TEXT, newMessage});
+export const addNewMessage = (newMessage) => ({type: NEW_MESSAGE, newMessage});
+// export const updateMessageText = (newMessage) => ({type: UPDATE_MESSAGE_TEXT, newMessage});
 
 export default chatReducer;

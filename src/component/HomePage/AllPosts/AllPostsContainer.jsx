@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import AllPosts from './AllPosts';
 
-import { addPostAC, updatePostTextAC } from '../../../redux/profileReducer';
+import { addPost } from '../../../redux/profileReducer';
 
 const mapStateToProps = (state) => {
     return{
@@ -11,16 +11,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        postAdd: () => {
-            dispatch(addPostAC())
-        },
-        updatePostText: (postText) => {
-            dispatch(updatePostTextAC(postText))
-        }
-    }
-}
-
-const AllPostsContainer = connect(mapStateToProps, mapDispatchToProps)(AllPosts);
+const AllPostsContainer = connect(mapStateToProps, { addPost })(AllPosts);
 export default AllPostsContainer;

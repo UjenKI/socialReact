@@ -1,4 +1,5 @@
 import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
 import Post from './Post/Post';
 
@@ -8,26 +9,38 @@ const AllPosts = (props) => {
 
     let inputValue = React.createRef();
 
-    let addPost = () => {
-        props.postAdd()
+    let addPost = (value) => {
+        props.addPost(value.postText)
+        console.log(value)
     }
 
-    let updateText = () => {
-        let text = inputValue.current.value;
-        props.updatePostText(text);
-        console.log(props.profilePage)
-    }
+    // let updateText = () => {
+    //     let text = inputValue.current.value;
+    //     props.updatePostText(text);
+    //     console.log(props.profilePage)
+    // }
 
     let posts = props.profilePage.posts.map(item => {
         return (<Post id={item.id} postText={item.postText} like={item.likeCount} />)
     })
+
+    let newPostForm = (props) => {
+        return (
+            <form onSubmit={props.handleSubmit}>
+                <div className={style.createPost}>
+                    <Field name="postText" placeholder="add your post text..." component="textarea" />
+                    <button className={style.createPostBtn}>Create post</button>
+                </div>
+            </form>
+        )
+    }
+
+    let NewPostReduxForm = reduxForm({form: "postForm"})(newPostForm);
+
     return(
         <div className={style.posts__list}>
             <h2>All posts</h2>
-            <div className={style.createPost}>
-                <textarea onChange={updateText} ref={inputValue} value={props.profilePage.postText}  name="post"  cols="30" rows="10" ></textarea>
-                <button onClick={addPost}  className={style.createPostBtn}>Create Post</button>
-            </div>
+            <NewPostReduxForm onSubmit={addPost} />
             { posts }
         </div>
     )
