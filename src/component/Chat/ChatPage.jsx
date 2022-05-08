@@ -1,7 +1,8 @@
 import React, { createRef } from 'react';
 import { Field, reduxForm } from 'redux-form';
 
-// import { Navigate } from 'react-router-dom';
+import { required, maxLengthCreator } from '../utils/validators';
+import { TextAreaField } from '../FieldControls/FieldControls';
 
 import style from './ChatPage.module.css';
 import ChatItem from './ChatItem/ChatItem';
@@ -9,29 +10,18 @@ import Messages from './Messages/Messages';
 
 const ChatPage = (props) => {
 
-console.log(props.auth.isAuth)
-
-// if(!props.auth.isAuth) return <Navigate to={'/login'} />
-
-    // let textAreaValue = React.createRef();
-
     let messageAdd = (value) => {
         props.addNewMessage(value.newMessage)
-        console.log(props)
     }
 
-    // let updateInputText = () => {
-    //     let txt = textAreaValue.current.value;
-    //     props.updateTextMessage(txt);
-    //     console.log(props.chatPage);
-    // }
+    const maxLenthCreator10 = maxLengthCreator(10);
 
     let addMessageForm = (props) => {
         return (
             <form className={style.messageHere} onSubmit={props.handleSubmit}>
                 {/* <textarea onChange={updateInputText}  ref={textAreaValue} value={ props.chatPage.newMessage }></textarea>
                 <button onClick={messageAdd} className={ style.sendMsgBtn }>Send</button> */}
-                <Field name="newMessage" placeholder="add your message..." component={"textarea"}/>
+                <Field name="newMessage" placeholder="add your message..." component={TextAreaField} validate={[required, maxLenthCreator10]}/>
                 <button className={style.sendMsgBtn}>Send</button>
             </form>
         )
