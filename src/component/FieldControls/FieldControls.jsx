@@ -29,7 +29,7 @@ import style from './FieldControls.module.css';
 
 export const FieldControls = ({input, meta, children}) => {
     const hasError = meta.touched && meta.error;
-    console.log(meta.error)
+    // console.log(meta.error)
     return (
         <div className={ style.formControl__wrapper }>
             <div className={ style.formControl + " " + (hasError ? style.error : " ")}>
@@ -46,6 +46,7 @@ export const TextAreaField = (props) => {
     )
 }
 export const InputField = (props) => {
+    // console.log(props)
     return (
         <FieldControls {...props}><input/></FieldControls>
     )

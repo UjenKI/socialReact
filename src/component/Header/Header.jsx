@@ -16,7 +16,7 @@ const Header = (props) => {
                 <h1>#jkl social-network</h1>
             </div>
             <div className={style.login__block}>
-    { props.isAuth ? <h4>{props.login}</h4> : <NavLink to={'/login'}>
+    { props.isAuth ? <div><h4>{props.login}</h4> <button className={style.authBtn} onClick={props.logout}>LOGOUT</button></div> : <NavLink to={'/login'}>
                     <h4>LOGIN</h4>
                     </NavLink>}
             </div>
