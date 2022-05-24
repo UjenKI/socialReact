@@ -6,12 +6,14 @@ import profilePageReducer from './profileReducer';
 import chatReducer from './chatReducer';
 import authReducer from './authReducer';
 import usersReducer from './usersReducer';
+import appReducer from './appReducer';
 
 let reducers = combineReducers({
     profilePage: profilePageReducer,
     chatPage: chatReducer,
     usersPage: usersReducer,
     auth: authReducer,
+    app: appReducer,
     form: formReducer
 });
 

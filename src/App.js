@@ -1,17 +1,33 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import HeaderContainer from './component/Header/HeaderContainer';
 import HomePageContainer from './component/HomePage/HomePageContainer';
 import ChatPageContainer from './component/Chat/ChatPageContainer';
 import SideBar from './component/SideBar';
 import UsersContainer from './component/Users/UsersContainer';
 import Login from './component/Login/Login';
+import { initializeApp } from './redux/appReducer';
+import Loader from './component/Loader';
 
 import './App.css';
 
-const App = (props) => {
-  return (
-    <Router>
+
+class App extends React.Component {
+
+  componentDidMount(){
+    this.props.initializeApp()
+  }
+
+  render(){
+
+    if(!this.props.initialized){
+      return <Loader />
+    }
+    
+    return (
+      <Router>
       <div className="App">
       <HeaderContainer />
         <div className="wrap__container">
@@ -29,7 +45,14 @@ const App = (props) => {
         </div>
       </div>
     </Router>
-  )
+    )
+  }
 }
 
-export default App;
+let mapStateToProps = (state) => {
+  return {
+    initialized: state.app.initialized
+  }
+}
+
+export default connect(mapStateToProps, {initializeApp})(App);

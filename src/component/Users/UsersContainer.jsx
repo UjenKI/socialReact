@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { AuthRedirectComponent } from '../../hoc/withAuthRedirect';
 import { setUsers, setToggleFetching, setTotalCount, setCurrentPage, follow, unFollow, setFollowingProgress, getUsers } from '../../redux/usersReducer';
 import { setProfilePage } from '../../redux/profileReducer';
+import { getUsersSelector } from '../../redux/selectors';
 
 import UsersAPI from './UsersAPI';
 import { compose } from 'redux';
@@ -16,7 +17,7 @@ const UsersContainer = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        usersPage: state.usersPage
+        usersPage: getUsersSelector(state)
     }
 }
 

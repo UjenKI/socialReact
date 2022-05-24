@@ -5,8 +5,6 @@ import logo from '../../assets/img/logo_jkl.png';
 import { NavLink } from 'react-router-dom';
 
 const Header = (props) => {
-    
-    console.log(props)
     return (
         <header>
             <div className={style.header__wrapper}>

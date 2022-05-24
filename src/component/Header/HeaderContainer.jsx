@@ -4,22 +4,22 @@ import * as axios from 'axios';
 import { connect } from 'react-redux';
 
 import Header from './Header';
-import { getAuth, logout } from '../../redux/authReducer';
+import { logout } from '../../redux/authReducer';
 import { compose } from 'redux';
 
 class HeaderContainer extends Component {
 
-    componentDidMount(){
-        // axios.get('https://social-network.samuraijs.com/api/1.0/auth/me',{withCredentials: true})
-        //     .then(res => {
-        //         if(res.data.resultCode === 0) {
-        //             let {id, email, login} = res.data.data;
-        //             this.props.setAuthUser(id, email, login);
-        //         }
-        //     })
-        this.props.getAuth()
+    // componentDidMount(){
+    //     axios.get('https://social-network.samuraijs.com/api/1.0/auth/me',{withCredentials: true})
+    //         .then(res => {
+    //             if(res.data.resultCode === 0) {
+    //                 let {id, email, login} = res.data.data;
+    //                 this.props.setAuthUser(id, email, login);
+    //             }
+    //         })
+    //     this.props.getAuth()
 
-    }
+    // }
 
     render(){
         return (
@@ -38,5 +38,5 @@ let mapStateToProps = (state) => {
 // export default connect(mapStateToProps, {getAuth})(HeaderContainer)
 
 export default compose(
-    connect(mapStateToProps, { getAuth,logout })
+    connect(mapStateToProps, { logout })
 )(HeaderContainer)
