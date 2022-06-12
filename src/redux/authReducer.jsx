@@ -2,7 +2,7 @@ import { authAPI } from '../api/api';
 
 import { stopSubmit } from 'redux-form';
  
-const SET_AUTH_USER = 'SET_AUTH_USER';
+const SET_AUTH_USER = 'socialNetwork/auth/SET_AUTH_USER';
 
 let initialState = {
     id: null,
@@ -27,36 +27,36 @@ let authReducer = (state = initialState, action) => {
 
 export const setAuthUser = (id, email, login, isAuth) => ({type: SET_AUTH_USER, data: {id, email, login, isAuth}})
 
-export const getAuth = () => {
-    return (dispatch) => {
-        authAPI.me().then(res => {
+export const getAuth = () => async (dispatch) => {
+    let res = await authAPI.me();
+        // authAPI.me().then(res => {
             if(res.data.resultCode === 0) {
                 let {id, email, login} = res.data.data;
                 dispatch(setAuthUser(id, email, login, true))
             }
-        })
-    }
+        // })
+    // }
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-    authAPI.login(email, password, rememberMe).then(res => {
+export const login = (email, password, rememberMe) => async (dispatch) => {
+    let res = await authAPI.login(email, password, rememberMe)
+    // authAPI.login(email, password, rememberMe).then(res => {
         if(res.data.resultCode === 0) {
-            console.log(res.data.messages)
             dispatch(getAuth())
         } else {
-            console.log(res.data.messages)
             let message = res.data.messages.length > 0 ? res.data.messages[0] : {_error: 'Invalid input data'}
             dispatch(stopSubmit("loginForm", message))
         }
-    })
+    // })
 }
 
-export const logout = () => (dispatch => {
-    authAPI.logout().then(res => {
+export const logout = () => async (dispatch) => {
+    let res = await authAPI.logout()
+    // authAPI.logout().then(res => {
         if(res.data.resultCode === 0){
             dispatch(setAuthUser(null, null, null, false))
         }
-    })
-})
+    // })
+}
 
 export default authReducer;
