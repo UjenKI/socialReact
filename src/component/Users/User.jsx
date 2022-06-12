@@ -9,6 +9,7 @@ import { usersAPI } from '../../api/api';
 
 let User = (props) => {
     const state = props.usersPage;
+    console.log(state)
 
     const list = state.users.map((user) => {
         return (

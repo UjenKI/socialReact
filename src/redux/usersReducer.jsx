@@ -1,12 +1,13 @@
 import { usersAPI } from '../api/api';
+import { sortIdObjKey } from '../component/utils/objHelpers';
 
-const FOLLOW = 'FOLLOW'; 
-const UNFOLLOW = 'UNFOLLOW'; 
-const SET_USERS = 'SET_USERS';
-const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
-const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
-const SET_TOGGLE_FETCHING = 'SET_TOGGLE_FETCHING';
-const SET_FOLLOWING_PROGRESS = 'SET_FOLLOWING_PROGRES';
+const FOLLOW = 'socialNetwork/users/FOLLOW'; 
+const UNFOLLOW = 'socialNetwork/users/UNFOLLOW'; 
+const SET_USERS = 'socialNetwork/users/SET_USERS';
+const SET_TOTAL_COUNT = 'socialNetwork/users/SET_TOTAL_COUNT';
+const SET_CURRENT_PAGE = 'socialNetwork/users/SET_CURRENT_PAGE';
+const SET_TOGGLE_FETCHING = 'socialNetwork/users/SET_TOGGLE_FETCHING';
+const SET_FOLLOWING_PROGRESS = 'socialNetwork/users/SET_FOLLOWING_PROGRES';
 
 let initialState = {
     users: [],
@@ -22,29 +23,22 @@ let usersReducer = (state = initialState, action) => {
         case FOLLOW: {
             return {
                 ...state,
-                users: state.users.map((user) => {
-                    if(user.id === action.userId){
-                        return {
-                            ...user,
-                            followed: true
-                        }
-                    }
-                    return user
-                })
+                users: sortIdObjKey(state.users, action.userId, "id", { followed: true })
+                // users: state.users.map((user) => {
+                //     if(user.id === action.userId){
+                //         return {
+                //             ...user,
+                //             followed: true
+                //         }
+                //     }
+                //     return user
+                // })
             }
         }
         case UNFOLLOW: {
             return {
                 ...state,
-                users: state.users.map((user) => {
-                    if(user.id === action.userId){
-                        return {
-                            ...user,
-                            followed: false
-                        }
-                    }
-                    return user
-                })
+                users: sortIdObjKey(state.users, action.userId, "id", { followed: false })
             }
         }
         case SET_USERS: {
@@ -104,22 +98,27 @@ export const getUsers = (currentPage = 1, pageSize = 5) => async (dispatch) => {
     
 }
 
-export const follow = (userId) => async (dispatch) => {
-        dispatch(setFollowingProgress(true, userId))
-        let res = await usersAPI.follow(userId);
-            if(res.data.resultCode === 0){
-                dispatch(followSuccess(userId))
-            }
-            dispatch(setFollowingProgress(false, userId))
+export const followUnfollowFlow = async (userId, actionType, apiType, dispatch) => {
+    dispatch(setFollowingProgress(true, userId))
+    let res = await apiType(userId);
+    if(res.data.resultCode === 0){
+        dispatch(actionType(userId))
+    }
+    dispatch(setFollowingProgress(false, userId))
 }
 
-export const unFollow = (userId) => async (dispatch) => {
-        dispatch(setFollowingProgress(true, userId))
-        let res = await usersAPI.unfollow(userId);
-            if(res.data.resultCode === 0){
-                dispatch(unFollowSuccess(userId))
-            }
-            dispatch(setFollowingProgress(false, userId))
+export const follow = (userId) => (dispatch) => {
+        // dispatch(setFollowingProgress(true, userId))
+        // let res = await usersAPI.follow(userId);
+        //     if(res.data.resultCode === 0){
+        //         dispatch(followSuccess(userId))
+        //     }
+        //     dispatch(setFollowingProgress(false, userId))
+    followUnfollowFlow(userId, followSuccess, usersAPI.follow, dispatch)
+}
+
+export const unFollow = (userId) => (dispatch) => {
+    followUnfollowFlow(userId, unFollowSuccess, usersAPI.unfollow, dispatch)
 }
 
 export default usersReducer;
