@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import style from './Status.module.css';
 
@@ -19,6 +19,10 @@ const ProfileStatusHook = (props) => {
     let setStatus = (e) => {
         setStatusText(e.currentTarget.value)
     }
+
+    useEffect(() => {
+        setStatusText(props.status)
+    },[props.status])
 
     return (
         <div className={style.status__wrapper}>

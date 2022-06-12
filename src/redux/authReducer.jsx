@@ -6,7 +6,7 @@ const SET_AUTH_USER = 'SET_AUTH_USER';
 
 let initialState = {
     id: null,
-    email: null,
+    email: null, 
     login: null,
     isAuth: false
 }
