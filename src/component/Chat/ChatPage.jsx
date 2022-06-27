@@ -8,10 +8,10 @@ import style from './ChatPage.module.css';
 import ChatItem from './ChatItem/ChatItem';
 import Messages from './Messages/Messages';
 
-const ChatPage = (props) => {
+const ChatPage = ({chatPage, addNewMessage}) => {
 
     let messageAdd = (value) => {
-        props.addNewMessage(value.newMessage)
+        addNewMessage(value.newMessage)
     }
 
     const maxLenthCreator10 = maxLengthCreator(10);
@@ -34,10 +34,10 @@ const ChatPage = (props) => {
             <h2>Chat component</h2>
             <div className={style.chat__column}>
                 <div className={style.chat__list}>
-                    <ChatItem chat={props.chatPage.chats}/>
+                    <ChatItem chat={chatPage.chats}/>
                 </div>
                 <div className={style.chat__item}>
-                    <Messages message={props.chatPage.messages}/>
+                    <Messages message={chatPage.messages}/>
                     <AddMessageReduxForm onSubmit={messageAdd} />
                 </div>
             </div>

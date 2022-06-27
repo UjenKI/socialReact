@@ -6,10 +6,10 @@ import avaImg from '../../assets/img/Tony.png';
 import style from './Users.module.css'
 import { NavLink } from 'react-router-dom';
 import { usersAPI } from '../../api/api';
+import Paginator from '../Paginator/Paginator';
 
 let User = (props) => {
     const state = props.usersPage;
-    console.log(state)
 
     const list = state.users.map((user) => {
         return (
@@ -79,7 +79,8 @@ let User = (props) => {
                     { list }
                 </ul>
                 <ul className={style.pagination}>
-                    { paginationElements }
+                    {/* { paginationElements } */}
+                    <Paginator totalItemsCount={state.totalCount} pageSize={state.pageSize} currentPage={state.currentPage} onPageChanged={props.changePage}/>
                 </ul>
             </div>
     )

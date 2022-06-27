@@ -8,14 +8,13 @@ import Post from './Post/Post';
 
 import style from './AllPosts.module.css';
 
-const AllPosts = (props) => {
+const AllPosts = ({addPost, profilePage}) => {
 
-    let addPost = (value) => {
-        props.addPost(value.postText)
-        console.log(value)
+    let addnNewPost = (value) => {
+        addPost(value.postText)
     }
 
-    let posts = props.profilePage.posts.map(item => {
+    let posts = profilePage.posts.map(item => {
         return (<Post id={item.id} postText={item.postText} like={item.likeCount} />)
     })
 
@@ -37,7 +36,7 @@ const AllPosts = (props) => {
     return(
         <div className={style.posts__list}>
             <h2>All posts</h2>
-            <NewPostReduxForm onSubmit={addPost} />
+            <NewPostReduxForm onSubmit={addnNewPost} />
             { posts }
         </div>
     )

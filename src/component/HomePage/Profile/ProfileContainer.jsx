@@ -8,8 +8,8 @@ import { getStatusProfile, updateProfileStatus } from '../../../redux/profileRed
 
 class ProfileContainer extends Component {
     componentDidMount(){
-        this.props.getStatusProfile(this.props.profilePage.profileId)
-        // console.log(this.props)
+        const {getStatusProfile, profilePage} = this.props;
+        getStatusProfile(profilePage.profileId)
 
     }
 

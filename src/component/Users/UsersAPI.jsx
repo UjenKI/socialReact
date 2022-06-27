@@ -19,7 +19,7 @@ class UsersAPI extends Component {
 
     pageChanged = (num) => {
         this.props.getUsers(num, this.props.usersPage.pageSize)
-        // this.props.setCurrentPage(num)
+        this.props.setCurrentPage(num)
         // this.props.setToggleFetching(true)
         // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${num}&count=${this.props.usersPage.pageSize}`, {withCredentials: true})
         //     .then((res) => {

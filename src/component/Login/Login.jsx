@@ -2,8 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-
-import { InputField } from '../FieldControls/FieldControls';
+import { InputField, createField } from '../FieldControls/FieldControls';
 import { required, maxLengthCreator10 } from '../utils/validators';
 import { login } from '../../redux/authReducer';
 
@@ -15,15 +14,12 @@ const LoginForm = (props) => {
 
     return (
         <form onSubmit={props.handleSubmit}>
-            <div>
+            {/* <div>
                 <Field placeholder={"login"} name={'email'} component={InputField} validate={[required, maxLengthCreator10] }/>
-            </div>
-            <div>
-                <Field name={"password"} placeholder={"password"} type={"password"} component={InputField} validate={[required, maxLengthCreator10]}/>
-            </div>
-            <div>
-                <Field component={"input"} name={"rememberMe"} type={"checkbox"}/> remember me
-            </div>
+            </div> */}
+            {createField('email', InputField, [required, maxLengthCreator10], null, 'login')}
+            {createField("password", InputField, [required, maxLengthCreator10], {type:"password"}, "password")}
+            {createField("rememberMe", "input", null, {type:"checkbox"}, '', 'remember me')}
             <button>Submit</button>
             {props.error && <h3>{props.error}</h3>}
        </form>

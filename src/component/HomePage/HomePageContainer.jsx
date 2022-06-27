@@ -8,31 +8,15 @@ import HomePage from './HomePage';
 import { getProfile, getStatusProfile } from '../../redux/profileReducer';
 import { compose } from 'redux';
 
-
-// class HomePageContainer extends Component {
-//     componentDidMount(){
-//         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-//             .then(res => {
-//               this.props.setProfilePage(res.data);
-//             })
-//     }
-
-//     render(){
-//         return (
-//             <HomePage {...this.props} />
-//         )
-//     }
-// }
-
-const HomePageContainer = (props) => {
+const HomePageContainer = ({auth, getProfile}, props) => {
     let {userId} = useParams();
 
     if(!userId){
-        userId = props.auth.id
+        userId = auth.id
     }
     
     useEffect(() => {
-        props.getProfile(userId)
+        getProfile(userId)
         getStatusProfile(userId)
     }, [userId])
 
@@ -41,16 +25,12 @@ const HomePageContainer = (props) => {
     )
 }
 
-// let withAuthRedirectComponent = AuthRedirectComponent(HomePageContainer)
-
 let mapStateToProps = (state) => {
     return {
         profilePage: state.profilePage,
         auth: state.auth
     }
 }
-
-// export default connect(mapStateToProps, { getProfile })(withAuthRedirectComponent);
 
 export default compose(
     connect(mapStateToProps, { getProfile }),
