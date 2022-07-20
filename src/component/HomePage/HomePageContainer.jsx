@@ -11,6 +11,8 @@ import { compose } from 'redux';
 const HomePageContainer = ({auth, getProfile}, props) => {
     let {userId} = useParams();
 
+    let idParam = userId
+
     if(!userId){
         userId = auth.id
     }
@@ -21,7 +23,7 @@ const HomePageContainer = ({auth, getProfile}, props) => {
     }, [userId])
 
     return (
-        <HomePage {...props} />
+        <HomePage {...props} isOwner={idParam} />
     )
 }
 

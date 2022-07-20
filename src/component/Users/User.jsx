@@ -2,7 +2,7 @@ import React from 'react';
 import * as axios from 'axios';
 
 import Loader from '../Loader';
-import avaImg from '../../assets/img/Tony.png';
+import avaImg from '../../assets/img/userPhoto.png';
 import style from './Users.module.css'
 import { NavLink } from 'react-router-dom';
 import { usersAPI } from '../../api/api';

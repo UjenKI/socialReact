@@ -1,6 +1,6 @@
 import React from 'react';
 
-import avatar from '../../../assets/img/Tony.png';
+import avatar from '../../../assets/img/userPhoto.png';
 import Loader from '../../Loader';
 import ProfileStatusHook from '../Status/ProfileStatusHook';
 
@@ -8,21 +8,43 @@ import ProfileStatusHook from '../Status/ProfileStatusHook';
 
 import style from './Profile.module.css';
 
-const Profile = (props) => {
+const Profile = ({profilePage, status, updateProfileStatus, isOwner, updateProfilePhoto}) => {
+// const Profile = (props) => {
+    // debugger
+    console.log(isOwner)
+    const state = profilePage.profile;
+
+    const uploadPhoto = (e) => {
+        if(e.target.files.length) {
+            updateProfilePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div className={style.profile__wrapper}>
-            { !props ? <Loader /> : <div className={style.profile__item}>
+            { !profilePage.profile ? <Loader /> : <div className={style.profile__item}>
                 <div className={style.img__profile}>
-                    {/* <img src={props.photos.large ? props.photos.large : avatar} alt="avatar"/> */}
+                    <img src={state.photos.large ? state.photos.large : avatar} alt="avatar"/>
                 </div>
+                {
+                    !isOwner && 
+                    <div className={style.upload__img}>
+                        <label htmlFor="avatarUpload">
+                            +
+                        </label>
+                        <input id="avatarUpload" onChange={uploadPhoto} type="file"/>
+                    </div>
+                }
+                
+                
                 <div className={style.profile__info__item}>
-                    <h2>{props.fullName || '---Name---'}</h2>
-                    <ProfileStatusHook status={props.status} updateProfileStatus={props.updateProfileStatus} />
+                    <h2>{state.fullName || '---Name---'}</h2>
+                    <ProfileStatusHook status={status} updateProfileStatus={updateProfileStatus} />
                     <div className={style.profile__description}>
-                        <p>{props.aboutMe || '--about---'}</p>
+                        <p>{state.aboutMe || '--about---'}</p>
                     </div>
                     <div className={style.fullName}>
-                        <p>{props.lookingForAJobDescription}</p>
+                        <p>{state.lookingForAJobDescription}</p>
                     </div>
                 </div>
             </div> }

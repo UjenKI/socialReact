@@ -8,12 +8,11 @@ import AllPostsContainer from './AllPosts/AllPostsContainer';
 import style from './HomePage.module.css';
 
 const HomePage = (props) => {
-    // console.log(props.profilePage)
     return(
         <div className={style.content__wrapper}>
             <div className={style.content__item}>
                 <h2>Profile</h2>
-                <ProfileContainer  {...props.profilePage} />
+                <ProfileContainer  {...props} />
                 <AllPostsContainer/>
             </div>
         </div>

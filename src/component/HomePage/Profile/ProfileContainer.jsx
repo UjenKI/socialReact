@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import Profile from './Profile';
-import { getStatusProfile, updateProfileStatus } from '../../../redux/profileReducer';
+import { getStatusProfile, updateProfileStatus, updateProfilePhoto } from '../../../redux/profileReducer';
 
 class ProfileContainer extends Component {
     componentDidMount(){
@@ -13,9 +13,17 @@ class ProfileContainer extends Component {
 
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if(this.props.profilePage.profileId != prevProps.profilePage.profileId){
+            const {getStatusProfile, profilePage} = this.props;
+            getStatusProfile(profilePage.profileId)
+            console.log('CHANGED ID - COMPONENT UPDATE')
+        }
+    }
+
     render(){
         return(
-            <Profile {...this.props} />
+            <Profile {...this.props}/>
         )
     }
 }
@@ -27,5 +35,5 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { getStatusProfile, updateProfileStatus })
+    connect(mapStateToProps, { getStatusProfile, updateProfileStatus, updateProfilePhoto })
 )(ProfileContainer)
