@@ -1,4 +1,5 @@
   import * as axios from 'axios';
+  import FormData from ''
 
 const instance = axios.create({
     withCredentials: true,
