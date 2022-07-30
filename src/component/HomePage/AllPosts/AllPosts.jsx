@@ -15,7 +15,7 @@ const AllPosts = ({addPost, profilePage}) => {
     }
 
     let posts = profilePage.posts.map(item => {
-        return (<Post id={item.id} postText={item.postText} like={item.likeCount} />)
+        return (<Post key={item.id} id={item.id} postText={item.postText} like={item.likeCount} />)
     })
 
     const maxLength10 = maxLengthCreator(10);

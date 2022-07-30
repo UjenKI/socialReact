@@ -4,10 +4,30 @@
     margin-bottom: 10px;
     border-radius: 8px;
 }
+.editProfileForm div p {
+    width: 93px;
+}
+
+.editBtn,
+.saveBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 15px;
+    border-radius: 8px;
+    border: 1px solid #bcbaba;
+    color: #474545;
+    transition: 0.3s ease-in;
+    cursor: pointer;
+}
+.editBtn:hover,
+.saveBtn:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
 
 .profile__wrapper h2 {
     text-align: start;
-    margin-bottom: 20px;
+    margin-left: 7px;
 }
 
 .profile__item {
@@ -15,7 +35,13 @@
     align-items: center;
     position: relative;
 }
-
+.fullName {
+    display: flex;
+    align-items: center;
+}
+.profile__info__item .fullName h2 {
+    margin-left: 10px;
+}
 .img__profile {
     width: 170px;
     height: 170px;
@@ -47,7 +73,13 @@
     font-size: 35px;
     margin-bottom: 7px;
 }
-
+.contactItem {
+    display: flex;
+    align-items: center;
+}
+.contactItem p:nth-child(2){
+    margin-left: 10px;
+}
 .img__profile img {
     position: absolute;
     top: 0;
@@ -59,7 +91,7 @@
 .profile__description {
     max-width: 500px;
     text-align: start;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     line-height: 26px;
 }
 .profile__info__item {
