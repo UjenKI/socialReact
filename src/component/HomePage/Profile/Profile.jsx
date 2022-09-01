@@ -9,7 +9,7 @@ import EditProfileReduxForm from './ProfileDataForm';
 
 import style from './Profile.module.css';
 
-const Profile = ({profilePage, status, updateProfileStatus, isOwner, updateProfilePhoto}) => {
+const Profile = ({profilePage, status, updateProfileStatus, isOwner, updateProfilePhoto, updateProfileInfo}) => {
 // const Profile = (props) => {
     // debugger
     // console.log(isOwner)
@@ -17,6 +17,7 @@ const Profile = ({profilePage, status, updateProfileStatus, isOwner, updateProfi
     let [editMode, setEditMode] = useState(false)
 
     const state = profilePage.profile;
+    console.log(state)
 
     const uploadPhoto = (e) => {
         if(e.target.files.length) {
@@ -26,6 +27,7 @@ const Profile = ({profilePage, status, updateProfileStatus, isOwner, updateProfi
 
     const onSubmit = (formData) => {
         console.log(formData)
+        updateProfileInfo(formData)
         setEditMode(false)
     }
 
@@ -74,6 +76,10 @@ const ProfileInfo = ({profile, status, updateProfileStatus, isOwner, setEditMode
                     </div>
                     <div className={style.fullName}>
                         <p><b>Looking for a job: </b>{profile.lookingForAJob ? 'Yes' : 'No'}</p>
+                    </div>
+                    <div className={style.lookingDescription}>
+                        <span><b>Looking for a job description:</b></span>
+                        <p>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : '-----'}</p>
                     </div>
                     <div className={style.myContacts}>
                         { Object.keys(profile.contacts).map(key => {

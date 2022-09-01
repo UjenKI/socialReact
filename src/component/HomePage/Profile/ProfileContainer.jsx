@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import Profile from './Profile';
-import { getStatusProfile, updateProfileStatus, updateProfilePhoto } from '../../../redux/profileReducer';
+import { getStatusProfile, updateProfileStatus, updateProfilePhoto, updateProfileInfo } from '../../../redux/profileReducer';
 
 class ProfileContainer extends Component {
     componentDidMount(){
@@ -35,5 +35,5 @@ let mapStateToProps = (state) => {
 }
 
 export default compose(
-    connect(mapStateToProps, { getStatusProfile, updateProfileStatus, updateProfilePhoto })
+    connect(mapStateToProps, { getStatusProfile, updateProfileStatus, updateProfilePhoto, updateProfileInfo })
 )(ProfileContainer)

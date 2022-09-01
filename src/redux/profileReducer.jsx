@@ -1,4 +1,5 @@
 import { profileAPI } from '../api/api';
+import { stopSubmit } from 'redux-form';
 
 const ADD_POST = 'socialNetwork/profile/ADD_POST';
 const SET_PROFILE_PAGE = 'socialNetwork/profile/SET_PROFILE_PAGE';
@@ -93,6 +94,18 @@ export const updateProfilePhoto = (photos) => async (dispatch) => {
             console.log(res)
             dispatch(updateProfilePhotoAC(photos))
         }
+}
+
+export const updateProfileInfo = (profileInfo) => async (dispatch, getState) => {
+    let res = await profileAPI.updateProfileInfo(profileInfo)
+    const profileId = getState().auth.id;
+    console.log(res)
+    if(res.data.resultCode === 0) {
+        dispatch(getProfile(profileId))
+    } else {
+        dispatch(stopSubmit("edit-profile", {_error: res.data.message[0]}));
+        return Promise.reject(res.data.message[0]);
+    }
 }
 
 export default profilePageReducer;

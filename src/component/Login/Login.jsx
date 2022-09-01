@@ -9,7 +9,6 @@ import { login } from '../../redux/authReducer';
 import style from './Login.module.css';
 
 const LoginForm = (props) => {
-
     // const maxLengthCreator10 = maxLengthCreator(10)
 
     return (
@@ -20,6 +19,10 @@ const LoginForm = (props) => {
             {createField('email', InputField, [required, maxLengthCreator10], null, 'login')}
             {createField("password", InputField, [required, maxLengthCreator10], {type:"password"}, "password")}
             {createField("rememberMe", "input", null, {type:"checkbox"}, '', 'remember me')}
+            {props.captchaUrl && <div>
+                <img src={props.captchaUrl} alt="captcha"/>    
+                {createField('captcha', InputField, [required], )}
+            </div>}
             <button>Submit</button>
             {props.error && <h3>{props.error}</h3>}
        </form>
@@ -35,21 +38,22 @@ const Login = (props) => {
     
 
     const onSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
 
     if(props.isAuth) return <Navigate to={'/profile'} />
 
     return (
         <div>
-            <LoginReduxForm onSubmit={onSubmit} />
+            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        captchaUrl: state.auth.captchaUrl
     }
 }
 

@@ -14,11 +14,15 @@ const ProfileDataForm =({handleSubmit, profile}) => {
             </div>
             <div className={style.aboutMe}>
                 <p>About me:</p>
-                {createField('aboutMe', InputField, null, {}, 'enter about me', )}
+                {createField('aboutMe', InputField, null, {value:"aaaaaa"}, 'enter about me', )}
             </div>
             <div className={style.lookingFor}>
                 <p>Looking for a job:</p>
-                {createField("lookingFor", "input", null, {type:"checkbox"})}
+                {createField("lookingForAJob", "input", null, {type:"checkbox"})}
+            </div>
+            <div className={style.lookingForDescription}>
+                <p>Looking for a job description:</p>
+                {createField("LookingForAJobDescription", TextAreaField, null,)}
             </div>
             <div className={style.myContacts}>
                 {Object.keys(profile.contacts).map(key => {
@@ -34,7 +38,7 @@ const EditProfileContact =({contactKey, contactValue}) => {
     return (
         <div className={style.contactItem}>
             <p><b>{contactKey+":"}</b></p>
-            {createField(`${contactKey}`, InputField, null, {value:{contactValue}}, `enter your ${contactKey}`)};
+            {createField(`contacts.${contactKey}`, InputField, null, {value:{contactValue}}, `enter your ${contactKey}`)};
         </div>
     )
 }
